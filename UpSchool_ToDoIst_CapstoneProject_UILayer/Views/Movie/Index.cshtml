@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MoviesModel.Title>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-40">
+<div class="row">
+    <div class="col-md-80">       
+                    <div class="card-body" style="padding-left:280px">
+        <table class="table table-borderless table-striped" align="center">
+            <thead>
+                <tr role="row">
+                
+@*                    <th>#</th>*@
+                    <th>Film Adı</th>
+                    <th>Açıklama</th>
+                    <th>Yapım Yılı</th>
+                    <th>Sezon Sayısı</th>
+                    <th>Bölüm Sayısı</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                       @* <td>@item.summary.id</td>*@
+                        <td>@item.jawSummary.title</td>
+                        <td>@item.jawSummary.synopsis</td>
+                        <td>@item.jawSummary.releaseYear</td>
+                        <td>@item.jawSummary.seasonCount</td>
+                        <td>@item.jawSummary.episodeCount</td>
+
+                        <td><a href="/movie/fragman?id=@item.summary.id" class="btn btn-outline-warning">Detayları</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div> <!-- / .col-md-3 -->
+</div> <!-- end section -->
+</div>
+</div>
+</div>
+</div>
+

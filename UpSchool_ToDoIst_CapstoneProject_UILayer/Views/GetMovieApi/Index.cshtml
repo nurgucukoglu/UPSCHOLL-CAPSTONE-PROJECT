@@ -1,0 +1,36 @@
+﻿
+@model List<MoviesModel.Title>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<div class="container">
+    <br />
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Film Adı</th>
+            <th>Puanı</th>
+            <th>Yapım Yılı</th>
+           
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.summary.id</td>
+                <td>@item.jawSummary.title</td>
+                <td>@item.jawSummary.synopsis</td>
+             
+                <td><a href="/movie/fragman?id=@item.summary.id" class="btn btn-outline-warning">Fragman</a></td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
