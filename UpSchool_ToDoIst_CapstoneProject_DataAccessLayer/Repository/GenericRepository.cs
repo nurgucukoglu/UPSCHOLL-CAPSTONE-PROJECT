@@ -10,47 +10,36 @@ namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.Repository
 {
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
+        private readonly Context _context;
+
+        public GenericRepository(Context context)
+        {
+            _context = context;
+        }
+
         public void Delete(T t)
         {
-            using (var context = new Context())
-            {
-                context.Remove(t);
-                context.SaveChanges();
-            }
+            _context.Remove(t);
         }
 
         public T GetById(int id)
         {
-            using (var context = new Context())
-            {
-                return context.Set<T>().Find(id);
-            }
+            return _context.Set<T>().Find(id);
         }
 
         public List<T> GetList()
         {
-            using (var context = new Context())
-            {
-                return context.Set<T>().ToList();
-            }
+            return _context.Set<T>().ToList();
         }
 
         public void Insert(T t)
         {
-            using (var context = new Context())
-            {
-                context.Add(t);
-                context.SaveChanges();
-            }
+            _context.Add(t);
         }
 
         public void Update(T t)
         {
-            using (var context = new Context())
-            {
-                context.Update(t);
-                context.SaveChanges();
-            }
+            _context.Update(t);
         }
     }
 }

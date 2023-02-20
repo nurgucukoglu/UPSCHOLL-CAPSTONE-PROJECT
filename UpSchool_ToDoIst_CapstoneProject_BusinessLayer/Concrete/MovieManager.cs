@@ -5,22 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using UpSchool_ToDoIst_CapstoneProject_BusinessLayer.Abstract;
 using UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.Abstract;
+using UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.EntityFramework;
+using UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.UnitOfWork;
 using UpSchool_ToDoIst_CapstoneProject_EntityLayer.Concrete;
 
 namespace UpSchool_ToDoIst_CapstoneProject_BusinessLayer.Concrete
 {
     public class MovieManager : IMovieService
     {
-        IMovieDal _movieDal;
+        private readonly IMovieDal _movieDal;
+        private readonly IUowDal _uowDal;
 
-        public MovieManager(IMovieDal movieDal)
+        public MovieManager(IMovieDal movieDal, IUowDal uowDal)
         {
             _movieDal = movieDal;
+            _uowDal = uowDal;
         }
 
         public void TDelete(MoviesModel t)
         {
             _movieDal.Delete(t);
+            _uowDal.Save();
         }
 
         public MoviesModel TGetById(int id)
@@ -30,17 +35,17 @@ namespace UpSchool_ToDoIst_CapstoneProject_BusinessLayer.Concrete
 
         public List<MoviesModel> TGetList()
         {
-            return _movieDal.GetList();
+            throw new NotImplementedException();
         }
 
         public void TInsert(MoviesModel t)
         {
-            _movieDal.Insert(t);
+            throw new NotImplementedException();
         }
 
         public void TUpdate(MoviesModel t)
         {
-            _movieDal.Update(t);
+            throw new NotImplementedException();
         }
     }
 }

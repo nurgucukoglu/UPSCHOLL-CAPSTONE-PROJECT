@@ -10,7 +10,7 @@ using UpSchool_ToDoIst_CapstoneProject_EntityLayer.Concrete;
 
 namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.EntityFramework
 {
-    public class EFCalendarDal : UOWRepository<Calendar> ICalendarDal
+    public class EFCalendarDal : GenericRepository<Calendar> ,ICalendarDal
     {
         //Generic Repository içinde context alan constructor olduğundan 
         //o constructor burada da tanımlanır
@@ -19,6 +19,6 @@ namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.EntityFramework
         {
         }
 
-       
+
     }
 }

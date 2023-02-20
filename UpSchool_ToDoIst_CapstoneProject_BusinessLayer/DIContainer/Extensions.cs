@@ -21,6 +21,8 @@ namespace UpSchool_ToDoIst_CapstoneProject_BusinessLayer.DIContainer
             services.AddScoped<IMovieService, MovieManager>();
             services.AddScoped<IMovieDal, EFMovieDal>();
 
+            services.AddScoped<ICalendarService, CalendarManager>();
+            services.AddScoped<ICalendarDal , EFCalendarDal>();
         }
 
 
