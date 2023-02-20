@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- FullCalendar CSS -->
+
+<div id="calendar"> </div>
+
+
+@*<script src="~/tinydash-master/dark/apps.js"></script>
+*@
+<script src="~/tinydash-master/dark/js/fullcalendar.js"></script>
+<script src="~/tinydash-master/dark/js/fullcalendar.custom.js"></script>
+<script>
+    /** full calendar */
+    var calendarEl = document.getElementById('calendar');
+    if (calendarEl) {
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendar = new FullCalendar.Calendar(calendarEl,
+                {
+                    plugins: ['dayGrid', 'timeGrid', 'list', 'bootstrap'],
+                    timeZone: 'UTC',
+                    themeSystem: 'bootstrap',
+                    header:
+                    {
+                        left: 'today, prev, next',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                    },
+                    buttonIcons:
+                    {
+                        prev: 'fe-arrow-left',
+                        next: 'fe-arrow-right',
+                        prevYear: 'left-double-arrow',
+                        nextYear: 'right-double-arrow'
+                    },
+                    weekNumbers: true,
+                    eventLimit: true, // allow "more" link when too many events
+                    events: 'https://fullcalendar.io/demo-events.json'
+                });
+            calendar.render();
+        });
+    }
+</script>
+
+

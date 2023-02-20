@@ -25,13 +25,14 @@ namespace UpSchool_ToDoIst_CapstoneProject_UILayer.Controllers
             _mediator = mediator;
         }
 
+        //LİSTELEME
         public async Task<IActionResult> GetAllTasks()
         {
             var values = await _mediator.Send(new GetAllTaskQuery());
             return View(values);
         }
 
-        [HttpGet] //ekleme  
+        [HttpGet] //EKLEME
         public async Task<IActionResult> AddTask()
         
         {
@@ -74,7 +75,7 @@ namespace UpSchool_ToDoIst_CapstoneProject_UILayer.Controllers
             return View();
         }
 
-        //silme
+        //SİLME
         public async Task<IActionResult> DeleteTask(int id)
         {
             await _mediator.Send(new RemoveTaskCommand(id));
@@ -86,10 +87,16 @@ namespace UpSchool_ToDoIst_CapstoneProject_UILayer.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateTask(int id)
         {
+
             var values = await _mediator.Send(new GetTaskByIdQuery(id));
             return View(values);
         }
 
-
+        [HttpPost]
+        public async Task<IActionResult> UpdateTask(UpdateTaskCommand updateTaskCommand)
+        {
+            var values = await _mediator.Send(updateTaskCommand);
+            return RedirectToAction("GetAllTasks");
+        }
     }
 }

@@ -12,20 +12,19 @@ namespace ApiLayer.Controllers
     [ApiController]
     public class DefaultController : ControllerBase
     {
-        private readonly ViewService _viewService;
+        private readonly ViewService _service;
 
-        public DefaultController(ViewService viewService)
+        public DefaultController(ViewService service)
         {
-            _viewService = viewService;
+            _service = service;
         }
-
 
         [HttpPost]
         public async Task<IActionResult> SaveMovieViews(MovieViews movieViews)  //bu post işlemiyle postmanda elect verisini manuel olarak giricez.
         {
-            await _viewService.SaveMovieViews(movieViews);
+            await _service.SaveMovieViews(movieViews);
             //IQueryable<MovieViews> movieViewList = _viewService.GetList();
-            return Ok(_viewService.GetMovieViewChartList());
+            return Ok(_service.GetMovieViewChartsList());
         }
 
         [HttpGet]
@@ -42,7 +41,7 @@ namespace ApiLayer.Controllers
                         Count = rnd.Next(100, 1000),
                         ViewDate = DateTime.Now.AddDays(x) //x: range.in değerlerini alıcak
                     };
-                    _viewService.SaveMovieViews(newModelViews).Wait();
+                    _service.SaveMovieViews(newModelViews).Wait();
                     System.Threading.Thread.Sleep(1000);  //bu işlemler 1 sn arayla gerçekleşecek.
                 }
             });

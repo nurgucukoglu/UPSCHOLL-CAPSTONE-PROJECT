@@ -34,17 +34,12 @@ namespace ApiLayer
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiLayer", Version = "v1" });
             });
 
+            //services.AddTransient<ViewService>();
+            services.AddScoped<ViewService>();
 
-            services.AddTransient<ViewService>();
-
-         
             services.AddCors();
             services.AddSignalR();
             services.AddControllers();
-
-
-
-
 
         }
 
@@ -75,6 +70,8 @@ namespace ApiLayer
                 endpoints.MapControllers();
                 endpoints.MapHub<ViewHub>("/ViewHub");
             });
+
+         
         }
     }
 }

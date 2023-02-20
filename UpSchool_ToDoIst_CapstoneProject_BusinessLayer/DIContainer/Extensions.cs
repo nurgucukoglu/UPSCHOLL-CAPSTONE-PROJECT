@@ -33,6 +33,7 @@ namespace UpSchool_ToDoIst_CapstoneProject_BusinessLayer.DIContainer
             services.AddTransient<IValidator<AppUserLoginDto>, AppUserLoginValidator>();
 
             services.AddTransient<IValidator<AppUserRegisterDto>, AppUserRegisterValidator>();
+            services.AddTransient<IValidator<AppUserUpdateDto>, AppUserUpdateValidator>();
 
 
 

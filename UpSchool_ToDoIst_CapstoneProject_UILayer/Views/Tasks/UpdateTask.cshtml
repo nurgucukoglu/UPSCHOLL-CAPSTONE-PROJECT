@@ -4,57 +4,59 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="col-md-6">
-    <div class="card shadow mb-4" style="padding-left:320px">
-        <div class="card-header">
-            <strong class="card-title">New Task</strong>
-        </div>
-        <div class="card-body">
-            <form method="post">
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
 
-                        <label for="simple-select2">Movie</label>
-                        <input type="text" class="form-control " asp-for="MovieName">                          
-                    </div> <!-- form-group -->
 
-                    <div class="form-row mb-3">
-                        <div class="col-md-6 mb-3">
-                            <label for="date-input1">Watch Date</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control drgpicker" id="date-input1" asp-for=Date aria-describedby="button-addon2">
-                                <div class="input-group-append">
-                                    <div class="input-group-text" id="button-addon-date"><span class="fe fe-calendar fe-16 mx-2"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-
+<div class="col-md-12 mb-4">
+    <div class="card profile shadow">
+        <div class="card-body my-4" style="padding-left:280px">
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <strong class="card-title">New Task</strong>
+                </div>
+                <div class="card-body">
+                    <form asp-action="UpdateTask" method="post">
                         <div class="form-row">
-                            <div class="col-md-6">
-                                <div class="custom-control custom-radio">
-                                    <span>İZLENECEK</span> @Html.CheckBoxFor(m => m.Status, true)
-                                    <input checked="checked" id="agentstatus" name="Tea" type="checkbox" value="true" />
+                            <div class="col-md-12 mb-3">
 
+                                <label for="simple-select2">Movie</label>
+                                <input type="text" class="form-control " asp-for="MovieName">
+                                <input type="hidden" class="form-control " asp-for="TaskId" value="@Model.TaskId">
+                            </div> <!-- form-group -->
+
+                            <div class="col-md-6 form-row mb-3">
+                                <div class="col-md-12 mb-3">
+                                    <label for="date-input1">Watch Date</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control drgpicker" id="date-input1" asp-for=Date aria-describedby="button-addon2">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text" id="button-addon-date"><span class="fe fe-calendar fe-16 mx-2"></span></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="custom-control custom-radio mb-3">
-                                    <span>İZLENDİ</span>
-                                    <input name="Tea" type="hidden" value="false" />
+                            <div class="col-md-12 mb-3">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="custom-control custom-radio">
+                                            <span>İzlenme Durumu</span>
+                                            @Html.CheckBoxFor(m => m.Status, Model.Status)
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-md-12 group mb-8">
+                                <label for="validationTextarea1">Note</label>
+                                <textarea class="form-control" asp-for="Note" placeholder="Take a note here" required="" rows="10"></textarea>
+                                <div class="invalid-feedback"> Please enter a message in the textarea. </div>
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">Update Task</button>
                         </div>
-                    </div>
-                    <div class="group mb-8">
-                        <label for="validationTextarea1">Note</label>
-                        <textarea class="form-control" asp-for="Note" placeholder="Take a note here" required="" rows="10"></textarea>
-                        <div class="invalid-feedback"> Please enter a message in the textarea. </div>
-                    </div>
+                    </form>
+                </div> <!-- /.card-body -->
+            </div> <!-- /.card -->
 
-                    <button class="btn btn-primary" type="submit">Update Task</button>
-            </form>
-        </div> <!-- /.card-body -->
-    </div> <!-- /.card -->
-</div> <!-- /.col -->
+        </div>
+    </div>
+</div>
+

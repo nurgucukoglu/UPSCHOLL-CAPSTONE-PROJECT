@@ -13,7 +13,6 @@ namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.CQRS.Results
         public int TaskId { get; set; }
         public bool Status { get; set; }
         public DateTime Date { get; set; }
-
         public string Note { get; set; }
         public string MovieName { get; set; }
     }

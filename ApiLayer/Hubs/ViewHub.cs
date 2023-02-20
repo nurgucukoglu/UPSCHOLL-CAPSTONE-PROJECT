@@ -5,16 +5,16 @@ namespace ApiLayer.Hubs
 {
     public class ViewHub:Hub
     {
-        private readonly ViewService _viewService;
+        private readonly ViewService _service;
 
-        public ViewHub(ViewService viewService)
+        public ViewHub(ViewService service)
         {
-            _viewService = viewService;
+            _service = service;
         }
 
         public async Task  GetViewList()
         {
-            await Clients.All.SendAsync("ReceiveViewList", _viewService.GetMovieViewChartList());
+            await Clients.All.SendAsync("ReceiveViewList", _service.GetMovieViewChartsList());
         }
     }
 }

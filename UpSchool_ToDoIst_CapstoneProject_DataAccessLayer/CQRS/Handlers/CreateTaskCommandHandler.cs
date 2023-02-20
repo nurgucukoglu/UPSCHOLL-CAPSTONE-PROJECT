@@ -28,7 +28,7 @@ namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.CQRS.Handlers
                 Date= request.Date,
                 MovieName= request.MovieName,
                 Note= request.Note,
-                TaskId= request.TaskId,
+                //TaskId= request.TaskId,
 
             });
             await _context.SaveChangesAsync();

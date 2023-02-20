@@ -24,9 +24,4 @@
     <ProjectReference Include="..\UpSchool_ToDoIst_CapstoneProject_EntityLayer\UpSchool_ToDoIst_CapstoneProject_EntityLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EntityFramework\" />
-    <Folder Include="Repository\" />
-  </ItemGroup>
-
 </Project>

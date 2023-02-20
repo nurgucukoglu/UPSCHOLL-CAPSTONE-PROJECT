@@ -100,7 +100,10 @@ namespace UpSchool_ToDoIst_CapstoneProject_UILayer
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Login}/{action=Index}/{id?}");
+
             });
+
+       
         }
     }
 }

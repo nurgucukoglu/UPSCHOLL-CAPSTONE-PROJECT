@@ -9,11 +9,11 @@ namespace UpSchool_ToDoIst_CapstoneProject_EntityLayer.Concrete
 {
     public enum Counrty
     {
-        Istanbul=500,
-        Berlin=300,
-        Londra=700,
-        Washington=600,
-        Tokyo=800
+        Istanbul=1,
+        Berlin=2,
+        Londra=3,
+        Washington=4,
+        Tokyo=5
         
     }
     public class MovieViews

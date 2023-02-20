@@ -75,7 +75,7 @@ namespace UpSchool_ToDoIst_CapstoneProject_UILayer.Controllers
 
         }
 
-        public IActionResult ForgotPasswordConfirmation()
+        public IActionResult ForgotPasswordConfirmation() ///fix 
         {
             return View();
         }

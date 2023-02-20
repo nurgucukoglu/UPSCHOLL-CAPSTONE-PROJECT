@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.Concrete;
 
 namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230218232412_calendarclass")]
+    partial class calendarclass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,30 +231,6 @@ namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("UpSchool_ToDoIst_CapstoneProject_EntityLayer.Concrete.Calendar", b =>
-                {
-                    b.Property<int>("EventId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("EventDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EventNote")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EventTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EventType")
-                        .HasColumnType("bit");
-
-                    b.HasKey("EventId");
-
-                    b.ToTable("Calendars");
                 });
 
             modelBuilder.Entity("UpSchool_ToDoIst_CapstoneProject_EntityLayer.Concrete.MovieViews", b =>

@@ -21,5 +21,7 @@ namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.Concrete
         //public DbSet<MoviesModel> MoviesModels { get; set; }
         public DbSet<MovieViews> MovieViews { get; set; }
         public DbSet<Tasks> Tasks { get; set; }
+
+        public DbSet<Calendar> Calendars { get; set; }  
     }
 }

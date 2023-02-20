@@ -1,0 +1,31 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card-body" style="padding-left:280px">
+<table class="table table-bordered"  >
+    <tr>
+        <th>#</th>
+        <th>Name Surname</th>
+        <th>Mail</th>
+        @*<th>Cinsiyet</th>*@
+      @*   <th>Sil</th>
+        <th>Düzenle</th>*@
+        <th>Assign Role</th>
+    </tr>
+    @foreach (var item in Model) //burda model yazınca yukarıya list yazmak gerekli.
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name @item.SurName</td>
+            <td>@item.Email</td>
+           @* <td>@item.Gender</td>*@
+      @*      <td><a href="#" class="btn btn-outline-danger">Sil</a></td>
+        <td><a href="#" class="btn btn-outline-success">Güncelle</a></td>*@
+        <td><a href="/User/AssignRole/@item.Id" class="btn btn-outline-dark">Assign Role</a></td>
+        </tr>
+    }
+</table>
+<a href="/Register/Index/" class="btn btn-primary me-2">New User</a>
+</div>

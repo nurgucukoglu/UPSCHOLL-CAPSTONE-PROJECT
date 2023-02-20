@@ -28,16 +28,18 @@ namespace ApiLayer.Hubs
         {
             await _context.MovieViews.AddAsync(movieViews);
             await _context.SaveChangesAsync();
-            await _hubContext.Clients.All.SendAsync("ReceiveViewList", GetMovieViewChartList());
+            await _hubContext.Clients.All.SendAsync("ReceiveViewList", GetMovieViewChartsList());
         }
 
-        public List<MovieViewChart> GetMovieViewChartList()
+        public List<MovieViewChart> GetMovieViewChartsList()
         {
             List<MovieViewChart> movieViewCharts = new List<MovieViewChart>();
 
             using (var command = _context.Database.GetDbConnection().CreateCommand())
             {
-                command.CommandText = "Select tarih,[1],[2],[3],[4],[5] from (select[Counrty],[Count],cast ([ViewDate]as date) as tarih From [MovieViews]) as movieViewT pivot (Sum(count) for [Counrty] in([1],[2],[3],[4],[5])) as ptable order by tarih asc";
+                command.CommandText = " select tarih,[1],[2],[3],[4],[5] from (select [Counrty],[Count],cast([ViewDate] as date) \r\n as tarih from MovieViews) as electricT pivot(Sum(count) for counrty in([1],[2],[3],[4],[5]) ) \r\n as ptable order by tarih asc";
+
+             
                 command.CommandType = System.Data.CommandType.Text;
                 _context.Database.OpenConnection();
 
@@ -48,7 +50,7 @@ namespace ApiLayer.Hubs
                         MovieViewChart movieViewChart = new MovieViewChart() ;
                         movieViewChart.ViewDate = reader.GetDateTime(0).ToShortDateString();
 
-                        Enumerable.Range(1, 7).ToList().ForEach(x =>
+                        Enumerable.Range(1, 5).ToList().ForEach(x =>
                         {
                             if (System.DBNull.Value.Equals(reader[x]))  //readerdan gelen değer boşsaa şunu ata...
                             {                                      //1.sn de ilk şehre yazınca charta yazarken diğerleri boş olduğu için hata vermesin diye.

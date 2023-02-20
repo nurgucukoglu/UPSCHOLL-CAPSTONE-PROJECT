@@ -1,5 +1,4 @@
-﻿
-@model List<GetAllTaskQueryResult>
+﻿@model List<GetAllTaskQueryResult>
 @{
     ViewData["Title"] = "GetAllTasks";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -7,40 +6,59 @@
 
 <div class="col-md-12 mb-4">
     <div class="card profile shadow">
-        <div class="card-body my-4">
+        <div class="card-body my-4" style="padding-left:280px">
             @foreach (var item in Model)
             {
-                <div class="row align-items-center">
-                    <div class="col-md-3 text-center mb-5">
-                        <a href="#!" class="avatar avatar-xl">
-                            <img src="./assets/avatars/face-3.jpg" alt="..." class="avatar-img rounded-circle">
-                        </a>
-                    </div>
-                    <div class="col">
+                <div class="card profile shadow box-shadow mb-3">
+                    <div class="card-body my-4 ">
                         <div class="row align-items-center">
-                            <div class="col-md-7">
-                                <h4 class="mb-1">@item.MovieName</h4>
-                                <p class="small mb-3"><span class="badge badge-dark">@item.Status</span></p>
+                            <div class="col-md-3 text-center mb-5">
+                                <a href="#!" class="avatar avatar-xl">
+                                    @*<img src="./assets/avatars/face-3.jpg" alt="..." >*@
+                                    <img src="~/tinydash-master/m.png" class="avatar-img rounded-circle" />
+                                </a>
                             </div>
                             <div class="col">
+                                <div class="row align-items-center">
+                                    <div class="col-md-7">
+                                        <h4 class="mb-1">@item.MovieName</h4>
+                                        <p class="small mb-3">
+                                            @if (item.Status)
+                                            {
+                                                <span class="badge badge-success p-2">İzlendi</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-dark p-2">İzlenmedi</span>
+                                            }
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-md-7">
+                                        <p class="text-muted">@item.Note </p>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-md-7 mb-2">
+                                        <span class="small text-muted mb-0">@item.Date.ToShortDateString()</span>
+                                    </div>
+                                    <div class="col mb-2">
+                                        <a type="button" class="btn btn-primary" href="/Tasks/DeleteTask/@item.TaskId">DELETE TASK</a>
+                                        @*                                <a class="btn btn-secondary" href="/Tasks/UpdateTask/@item.TaskId">UPDATE</a>
+                                    *@
+                                        <a class="btn btn-secondary" href="@Url.Action("UpdateTask","Tasks",new { id = item.TaskId })">
+                                            UPDATE
+                                        </a>
+
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-md-7">
-                                <p class="text-muted">@item.Note </p>
-                            </div>                           
-                        </div>
-                        <div class="row align-items-center">
-                            <div class="col-md-7 mb-2">
-                                <span class="small text-muted mb-0">@item.Date</span>
-                            </div>
-                            <div class="col mb-2">
-                                <button type="button" class="btn btn-primary" href="/Tasks/DeleteTask/@item.TaskId">DELETE TASK</button>
-                                <button type="button" class="btn btn-secondary">Profile</button>
-                            </div>
-                        </div>
+                        </div> <!-- / .row- -->
                     </div>
-                </div> <!-- / .row- -->
+                </div>
             }
 
         </div> <!-- / .card-body - -->
