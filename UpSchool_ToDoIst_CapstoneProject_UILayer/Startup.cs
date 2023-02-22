@@ -21,6 +21,12 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using UpSchool_ToDoIst_CapstoneProject_BusinessLayer.DIContainer;
 using FluentValidation.AspNetCore;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using UpSchool_ToDoIst_CapstoneProject_BusinessLayer.Abstract;
+using UpSchool_ToDoIst_CapstoneProject_BusinessLayer.Concrete;
+using UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.Abstract;
+using UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.EntityFramework;
+using UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.UnitOfWork;
 
 namespace UpSchool_ToDoIst_CapstoneProject_UILayer
 {
@@ -35,22 +41,16 @@ namespace UpSchool_ToDoIst_CapstoneProject_UILayer
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            //services.AddMediatR(typeof(Startup));
-            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+        {			
+			//services.AddMediatR(typeof(Startup));
+			services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddHttpClient();
-
-            services.ContainerDependencies();
-
-            services.AddDbContext<Context>();
-
-            services.AddIdentity<AppUser, AppRole>()
-                .AddDefaultTokenProviders()
-               .AddEntityFrameworkStores<Context>();
+			services.AddDbContext<Context>();
 
 
-            services.CustomizeValidator();
+
+			services.CustomizeValidator();
 
             services.AddControllersWithViews().AddFluentValidation();
 
@@ -71,11 +71,14 @@ namespace UpSchool_ToDoIst_CapstoneProject_UILayer
 
             services.AddAutoMapper(typeof(Startup));
 
-            /*.AddErrorDescriber<CustomIdentityValidator>()*//*.AddDefaultTokenProviders();*/
-        }
+			services.ContainerDependencies();
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+
+			/*.AddErrorDescriber<CustomIdentityValidator>()*//*.AddDefaultTokenProviders();*/
+		}
+
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -103,7 +106,6 @@ namespace UpSchool_ToDoIst_CapstoneProject_UILayer
 
             });
 
-       
         }
     }
 }

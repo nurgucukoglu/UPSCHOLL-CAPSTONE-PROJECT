@@ -79,7 +79,7 @@ namespace UpSchool_ToDoIst_CapstoneProject_UILayer.Controllers
         public async Task<IActionResult> DeleteTask(int id)
         {
             await _mediator.Send(new RemoveTaskCommand(id));
-            return RedirectToAction("GetTasks");
+            return RedirectToAction("GetAllTasks");
         }
 
 

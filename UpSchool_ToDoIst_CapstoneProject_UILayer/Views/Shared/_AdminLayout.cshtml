@@ -43,13 +43,13 @@
                         <i class="fe fe-sun fe-16"></i>
                     </a>
                 </li>
-                <li class="nav-item">
+              @*  <li class="nav-item">
                     <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-shortcut">
                         <span class="fe fe-grid fe-16"></span>
                     </a>
-                </li>
+                </li>*@
                 <li class="nav-item">
-                    <a class="nav-link text-muted my-2" href="/User/UpdateUser" role="button" data-toggle="modal">
+                    <a href="/User/UpdateUser" class="nav-link text-muted my-2"  role="button" data-toggle="modal">
                         <span class="avatar avatar-sm mt-2">
                             <img src="~/tinydash-master/ss.png" class="avatar-img rounded-circle" />
                         </span>
@@ -200,10 +200,16 @@
             </div>
         </div>
 
-        @RenderBody()
+ 
 
 
     </div> <!-- .wrapper -->
+
+
+           <div>
+           @RenderBody()
+        </div>
+
     <script src="~/tinydash-master/dark/js/jquery.min.js"></script>
     <script src="~/tinydash-master/dark/js/popper.min.js"></script>
     <script src="~/tinydash-master/dark/js/moment.min.js"></script>
@@ -441,5 +447,8 @@
         gtag('js', new Date());
         gtag('config', 'UA-56159088-1');
     </script>
+
+
+
 </body>
 </html>

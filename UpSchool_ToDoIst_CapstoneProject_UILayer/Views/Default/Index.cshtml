@@ -1,75 +1,84 @@
 ﻿<!--https://localhost:44359/ViewHub-->
 @{
     ViewData["Title"] = "Index";
-    //Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
 }
 
-<h2>Ülkelere Göre İzlenme Grafiği</h2>
+<style>
+    .chart-wrapper {
+        border: 1px solid blue;
+        height: 600px;
+        width: 1200px;
+        margin-left: 280px;
+    }
+</style>
+
+<h2 style="padding-left:280px">Ülkelere Göre İzlenme Grafiği</h2>
+  
+<div id="curve_chart" class="chart-wrapper " ></div>
 
 
-@section Scripts
-    {
-    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="~/tinydash-master/dark/js/jquery.min.js"></script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        $(document).ready(() => {
+    $(document).ready(() => {
 
-            console.log("TEST");
+        console.log("TEST");
 
-            var movieViewChartList = new Array();
+        var movieViewChartList = new Array();
 
-            movieViewChartList.push(["Tarih", "Istanbul", "Berlin", "Washington", "Tokyo", "Amsterdam"]) //sql.deki başlıkları karşılayan yapı
-
+        movieViewChartList.push(["Tarih", "Istanbul", "Berlin", "Washington", "Tokyo", "Amsterdam"]) //sql.deki başlıkları karşılayan yapı
 
 
-            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44359/ViewHub").build();
-            console.log("connection pass");
 
-            connection.start().then(() => {
-                connection.invoke("GetViewList");
-            }).catch((err) => {
-                console.log(err);
-            });
-            console.log("connection start pass");
+        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44399/ViewHub").build();
+        console.log("connection pass");
 
-            connection.on("ReceiveViewList", (GetMovieViewChartsList) => {
-               
+        connection.start().then(() => {
+            connection.invoke("GetViewList");
+        }).catch((err) => {
+            console.log(err);
+        });
+        console.log("connection start pass");
 
-                movieViewChartList = movieViewChartList.splice(0, 1);
-                GetMovieViewChartsList.forEach((item) => {
-                    movieViewChartList.push([item.viewDate, item.counts[0], item.counts[1], item.counts[2], item.counts[3], item.counts[4]]);
-                })
-              
-
-                google.charts.load('current', { 'packages': ['corechart'] });
-                google.charts.setOnLoadCallback(drawChart);
-                /* console.log(GetElectricChartsList);*/
-            });
-            console.log("connection opened");
-
-            function drawChart() {
-
-                var data = google.visualization.arrayToDataTable(movieViewChartList);
-
-                var options = {
-                    title: 'Elektrik Tüketim Grafiği',
-                    curveType: 'none',
-                    legend: { position: 'bottom' }
-                };
-                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-              
-
-                chart.draw(data, options);
-            }
-
-        })
+        connection.on("ReceiveViewList", (GetMovieViewChartsList) => {
 
 
-    </script>
+            movieViewChartList = movieViewChartList.splice(0, 1);
+            GetMovieViewChartsList.forEach((item) => {
+                movieViewChartList.push([item.viewDate, item.counts[0], item.counts[1], item.counts[2], item.counts[3], item.counts[4]]);
+            })
 
 
-}
-<div id="curve_chart" style="width:1200px; height:800px"></div>
+            google.charts.load('current', { 'packages': ['corechart'] });
+            google.charts.setOnLoadCallback(drawChart);
+            /* console.log(GetElectricChartsList);*/
+        });
+        console.log("connection opened");
+
+        function drawChart() {
+
+            document.getElementById('curve_chart').style = '';
+            var data = google.visualization.arrayToDataTable(movieViewChartList);
+
+            var options = {
+                title: '',
+                curveType: 'none',
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: { position: 'bottom' }
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+
+        }
+
+    })
+
+
+</script>

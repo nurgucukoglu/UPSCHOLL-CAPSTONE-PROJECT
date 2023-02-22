@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,13 +12,15 @@ namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.Repository
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
         private readonly Context _context;
+		
 
-        public GenericRepository(Context context)
-        {
-            _context = context;
-        }
+		public GenericRepository(Context context) 
+		{
+			_context = context;
+			
+		}
 
-        public void Delete(T t)
+		public void Delete(T t)
         {
             _context.Remove(t);
         }

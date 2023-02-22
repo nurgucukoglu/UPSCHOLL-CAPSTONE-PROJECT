@@ -12,8 +12,10 @@ namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.EntityFramework
 {
     public class EFMovieDal : GenericRepository<MoviesModel>, IMovieDal
     {
-        public EFMovieDal(Context context) : base(context)
-        {
-        }
-    }
+		private IServiceProvider _serviceProvider;
+		public EFMovieDal(Context context, IServiceProvider serviceProvider) : base(context)
+		{
+			_serviceProvider = serviceProvider;
+		}
+	}
 }

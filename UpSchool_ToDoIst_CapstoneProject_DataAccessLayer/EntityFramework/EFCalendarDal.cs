@@ -12,13 +12,15 @@ namespace UpSchool_ToDoIst_CapstoneProject_DataAccessLayer.EntityFramework
 {
     public class EFCalendarDal : GenericRepository<Calendar> ,ICalendarDal
     {
-        //Generic Repository içinde context alan constructor olduğundan 
-        //o constructor burada da tanımlanır
-        //const aşağıda base class alıyor.
-        public EFCalendarDal(Context context) : base(context)
-        {
-        }
+		private IServiceProvider _serviceProvider;
+		//Generic Repository içinde context alan constructor olduğundan 
+		//o constructor burada da tanımlanır
+		//const aşağıda base class alıyor.
+		public EFCalendarDal(Context context, IServiceProvider serviceProvider) : base(context)
+		{
+			_serviceProvider = serviceProvider;
+		}
 
 
-    }
+	}
 }

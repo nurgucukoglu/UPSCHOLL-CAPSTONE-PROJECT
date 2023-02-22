@@ -37,7 +37,6 @@ namespace UpSchool_ToDoIst_CapstoneProject_UILayer.Controllers
             TempData["UserId"] = user.Id; //. başka actionlarda da kullanılabilir. Ama ViewBag de sadece assignrole gönderilebilir.
             var userRoles = await _userManager.GetRolesAsync(user);//gönderilen kullanıcının rolünü getirsin metotu
 
-
             List<RoleAssignModel> models = new List<RoleAssignModel>();
 
             foreach (var item in roles)  //rol atama yapar. Roles listesinden gelen rolü
